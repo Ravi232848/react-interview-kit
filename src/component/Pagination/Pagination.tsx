@@ -46,13 +46,13 @@ export default function Pagination({
             disabled={currentPage <= 1}
             onClick={() => changePage(currentPage - 1)}
           >
-            Previous
+            <span>Previous</span>
           </button>
           <div>
             {getPageNumbers().map((page, index) => (
               <button
                 key={index}
-                className={page === currentPage ? "active" : ""}
+                className={page === currentPage ? "page active" : ""}
                 disabled={page === "..."}
                 onClick={() => changePage(Number(page))}
               >
@@ -65,7 +65,7 @@ export default function Pagination({
             disabled={currentPage >= totalPages}
             onClick={() => changePage(currentPage + 1)}
           >
-            Next
+            <span>Next</span>
           </button>
         </div>
       )}

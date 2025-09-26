@@ -12,6 +12,9 @@ code {
     monospace;
 }
 
+.list{
+  margin: 6px 65px 20px;
+}
 .pagination {
   display: flex;
   justify-content: space-between;
@@ -28,4 +31,15 @@ code {
 .pagination-button:active {
   background: linear-gradient(90deg, #cfc9e3, #d7cbb8);
   box-shadow: 0 0 12px rgba(228, 221, 216, 0.8);
+}
+
+.page.active{
+  color: #4654ec;
+}
+
+.pagination-container {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
 }
