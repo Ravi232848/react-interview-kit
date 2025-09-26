@@ -6,21 +6,23 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  const [itemPerPage, setItemPerPage] = useState();
-  const [totalCount, setTotalCount] = useState(0);
+  const [itemPerPage, setItemPerPage] = useState(10);
+  const [totalCount, setTotalCount] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     async function fetchTableData() {
       setIsLoading(true);
-      let url = "https://dummyjson.com/products?&limit=150&skip=0";
+      let url = "https://dummyjson.com/products?&limit=10&skip=0";
       try {
         const response = await fetch(url);
         if (!response.ok) {
           setError("Error while fetching data...");
         }
         const data = await response.json();
+        setTotalCount(data.total);
         setIsLoading(false);
+        setTableData(data.products)
       } catch (error) {
         setError("Error while fetching data...");
       }
@@ -37,7 +39,7 @@ function App() {
   }
   return (
     <>
-      <ul>{tableData && tableData.length && tableData.map((item) => <li>{item.title}</li>)}</ul>
+      <ul>{tableData && tableData.length && tableData.map((item) => <li key={item.id}>{item.title}</li>)}</ul>
       <Pagination
         totalCount={totalCount}
         itemPerPage={itemPerPage}
